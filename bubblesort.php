@@ -2,8 +2,8 @@
 
 $test = array();
 
-for($i = 0; $i < 3000; $i++){
-	$test[$i] = rand(1,10000);
+for($i = 0; $i < 5000; $i++){
+	$test[$i] = rand(1,5000);
 }
 
 function bubbleSort($arr){
@@ -30,7 +30,8 @@ function bubbleSort($arr){
 
 $endarr = bubbleSort($test);
 
+echo '<pre>';
 var_dump($endarr);
-
+echo '</pre>';
 
 ?>

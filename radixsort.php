@@ -4,14 +4,14 @@ $test = array();
 
 $maincount = 0;
 
-for($i = 0; $i < 3000; $i++){
-	$test[$i] = rand(1,10000);
+for($i = 0; $i < 5000; $i++){
+	$test[$i] = rand(1,5000);
 }
 
 $time_start = microtime(true);
 
 function radixSort($arr){
-	
+
 
 	global $bins;
 
@@ -24,57 +24,38 @@ function radixSort($arr){
 	}
 
 	while($count < strlen((string)$max)) {
-		
+
 		$bins = array(0,0,0,0,0,0,0,0,0,0);
-		
+
 		$secarr = array();
 		for($a = 0; $a < count($arr); $a++){
 			$secarr[$a] = '';
 		}
 
-		// var_dump($secarr);
-
 		for($i = 0; $i < count($arr); $i++){
-
 			$bins[$arr[$i] % 10]++;
-
-			// echo "inc bin counts for single digit";
-			// var_dump($bins);
 		}
-
 
 		for($j = 0; $j < 9; $j++){
 			$bins[$j+1] += $bins[$j];
 		}
-
-		// echo "adding bin counts down the line";
-		// var_dump($bins);
-
 
 		for($x = count($arr)-1; $x >= 0; $x--){
 			$bins[$arr[$x] % 10]--;
 			$secarr[$bins[$arr[$x] % 10]] = $arr[$x];
 		}
 
-		// var_dump($secarr);
-
 		for($z = 0; $z < count($arr); $z++){
 			$arr[$z] = $secarr[$z] / 10;
 		}
-
-		// var_dump($arr);
-
-		// var_dump($arr);
 
 		$count++;
 
 	}
 
-	// var_dump($arr);
-
 	global $maincount;
 	$maincount = $count;
-	return $arr; 
+	return $arr;
 
 }
 
@@ -91,6 +72,8 @@ $time_stop = microtime(true);
 $time = $time_stop - $time_start;
 echo "Sorted in $time seconds.";
 
+echo '<pre>';
 var_dump($endarr);
+echo '</pre>';
 
 ?>

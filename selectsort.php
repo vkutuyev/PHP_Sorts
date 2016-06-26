@@ -2,14 +2,14 @@
 
 $test = array();
 
-for($i = 0; $i < 3000; $i++){
-	$test[$i] = rand(1,10000);
+for($i = 0; $i < 5000; $i++){
+	$test[$i] = rand(1,5000);
 }
 
 function sortArray($arr){
 	$time_start = microtime(true);
 	$count = 0;
-	
+
 	while( $count < count($arr)){
 
 		$min = $arr[$count];
@@ -22,11 +22,11 @@ function sortArray($arr){
 			}
 		}
 
-	
+
 		$temp = $arr[$count];
 		$arr[$count] = $arr[$minpos];
 		$arr[$minpos] = $temp;
-		
+
 		$count++;
 
 	}
@@ -42,6 +42,8 @@ function sortArray($arr){
 
 $endarr = sortArray($test);
 
+echo '<pre>';
 var_dump($endarr);
+echo '</pre>';
 
 ?>
